@@ -142,19 +142,21 @@ class Player {
             Map<Factory, Integer> incommingTroops = new HashMap<>();
             for(Troop troop : troopList) {
                 if(troop.getIdPlayer() == -1 && troop.getNumberTurns() <= 1) {
-                    System.err.println("Troop of " + troop.getNumberCyborgs() + " cyborgs incomming to factory " + troop.getEndFactory() + " soon");
                     if (incommingTroops.containsKey(troop.getEndFactory()))
                         incommingTroops.put(troop.getEndFactory(), incommingTroops.get(troop.getEndFactory()) + troop.getNumberCyborgs());
                     else
                         incommingTroops.put(troop.getEndFactory(), troop.getNumberCyborgs());
                         
-                    if(incommingTroops.get(troop.getEndFactory()) > (int)(1.5*troop.getEndFactory().getNumberCyborgs()))
+                    if(incommingTroops.get(troop.getEndFactory()) > (int)(1.5*troop.getEndFactory().getNumberCyborgs()) && !ignoredFactories.contains(troop.getEndFactory()))
                         ignoredFactories.add(troop.getEndFactory());
-                }
-                
-                
+                }    
             }
-             System.err.println("Ignored factories because of attacks : " + ignoredFactories);
+            
+            for(Map.Entry<Factory, Integer> entry : incommingTroops.entrySet()) {
+                System.err.println("Troop of " + entry.getValue() + " cyborgs incomming to factory " + entry.getKey() + " soon");
+            }
+            
+            System.err.println("Ignored factories because of attacks : " + ignoredFactories);
             
             System.err.println(" ################################## ");
             // We find our base with the more cyborgs
@@ -314,6 +316,9 @@ class Player {
             ignoredFactories = new ArrayList<Factory>();
             attackingFactories = new ArrayList<Factory>();
             bombingFactories = new ArrayList<Factory>();
+            troopList = new ArrayList<Troop>();
+            bombList = new ArrayList<Bomb>();
+            
             int entityCount = in.nextInt(); // the number of entities (e.g. factories and troops)
             
             for (int i = 0; i < entityCount; i++) {
