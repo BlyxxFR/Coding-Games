@@ -354,7 +354,6 @@ class Player {
     					}
 				    }
 				}
-				
 			}
 			return myDecisions;
 		}
