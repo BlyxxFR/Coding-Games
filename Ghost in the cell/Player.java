@@ -9,8 +9,8 @@ import java.math.*;
 class Player {
 
 
-	private static Scanner in = new Scanner(System.in);
-	private static ArrayList<Factory> factoryList = new ArrayList<Factory>();
+    private static Scanner in = new Scanner(System.in);
+    private static ArrayList<Factory> factoryList = new ArrayList<Factory>();
 	private static ArrayList<Factory> prevMyFactories = new ArrayList<Factory>();
     private static Map<Integer, Factory> myFactories = new HashMap<>();
     private static Map<Integer, Factory> ennemyFactories = new HashMap<>();
@@ -19,7 +19,7 @@ class Player {
     private static ArrayList<Bomb> bombList = new ArrayList<Bomb>();
 	private static ArrayList<Factory> ignoredFactories = new ArrayList<>();
 	private static ArrayList<Factory> bombingFactories;
-	private static int bombsLeft = 2;
+    private static int bombsLeft = 2;
     private static int currentTurn = 0;
 	
 	public static void main(String args[]) {
